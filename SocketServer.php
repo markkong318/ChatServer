@@ -41,6 +41,9 @@ class SocketServer
         @param		int	- Port to bind to
         @result		void
      */
+
+    public $client_class = 'SocketServerClient';
+
     public function __construct($bind_ip,$port)
     {
         set_time_limit(0);
@@ -136,7 +139,8 @@ class SocketServer
                 if(empty($this->clients[$i]))
                 {
                     $temp_sock = $this->master_socket;
-                    $this->clients[$i] = new SocketServerClient($this->master_socket,$i);
+                    $this->clients[$i] = new $this->client_class($this->master_socket,$i);
+                    $this->handle_connect($this, $this->clients[$i], "");
                     $this->trigger_hooks("CONNECT",$this->clients[$i],"");
                     break;
                 }
@@ -163,6 +167,7 @@ class SocketServer
                     else
                     {
                         SocketServer::debug("{$i}@{$this->clients[$i]->ip} --> {$input}");
+                        $this->handle_input($this, $this->clients[$i], "");
                         $this->trigger_hooks("INPUT",$this->clients[$i],$input);
                     }
                 }
