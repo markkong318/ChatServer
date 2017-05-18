@@ -187,6 +187,7 @@ class SocketServer
         $i = $client_index;
         SocketServer::debug("Client {$i} from {$this->clients[$i]->ip} Disconnecting");
         $this->trigger_hooks("DISCONNECT",$this->clients[$i],$message);
+        $this->handle_disconnect($this, $this->clients[$i], $message);
         $this->clients[$i]->destroy();
         unset($this->clients[$i]);
     }
@@ -266,5 +267,14 @@ class SocketServer
         return $this->{$name};
     }
 
+    public function handle_connect($server,$client, $input){
 
+    }
+
+    public function handle_disconnect($server,$client, $input){
+    }
+
+    public function handle_input($server,$client, $input){
+
+    }
 }
