@@ -15,7 +15,7 @@ require_once 'RSocketServerClient.php';
 //    }
 //}
 
-$server = new RSocketServer("127.0.0.1",9002); // Binds to determined IP
+$server = new RSocketServer("127.0.0.1",9004); // Binds to determined IP
 //$server->hook("connect","connect_function"); // On connect does connect_function($server,$client,"");
 //$server->hook("disconnect","disconnect_function"); // On disconnect does disconnect_function($server,$client,"");
 //$server->hook("input","handle_input"); // When receiving input does handle_input($server,$client,$input);
