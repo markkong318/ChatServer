@@ -2,13 +2,21 @@
 
 class RSocketServerClient extends SocketServerClient
 {
-    const STAGE_LOGIN_NAME = 1;
-
+	
     protected $name = '';
 
-    protected $stage = 1;
+    protected $is_bot = false;
 
+    public function __construct(){
+        $this->is_bot = true;
+    }
+	
     public function send_message($msg){
+
+        if($this->is_bot){
+            return;
+        }
+
         $msg .= "\r\n";
         socket_write($this->socket, $msg, strlen($msg) );
     }

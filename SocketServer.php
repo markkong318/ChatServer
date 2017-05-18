@@ -167,7 +167,7 @@ class SocketServer
                     else
                     {
                         SocketServer::debug("{$i}@{$this->clients[$i]->ip} --> {$input}");
-                        $this->handle_input($this, $this->clients[$i], "");
+                        $this->handle_input($this, $this->clients[$i], $input);
                         $this->trigger_hooks("INPUT",$this->clients[$i],$input);
                     }
                 }

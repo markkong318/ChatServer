@@ -69,6 +69,11 @@ class SocketServerClient
         return $this->{$name};
     }
 
+	function &__set($name, $value)
+	{
+		$this->{$name} = $value;
+	}
+
     function __isset($name)
     {
         return isset($this->{$name});
