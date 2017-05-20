@@ -89,8 +89,16 @@ class RSocketServer extends SocketServer
         return;
     }
 
-
     public function handle_input($server,$client, $input){
+        $inputs = explode(PHP_EOL, $input);
+
+        for($i = 0;$i < count($inputs) - 1; $i++){
+            $this->handle_input2($server,$client, $inputs[$i]);
+        }
+        //echo print_r($inputs, true);
+    }
+
+    public function handle_input2($server,$client, $input){
         $input = preg_replace('/\r\n$/','',$input);
 
 		if($client->name == ''){
