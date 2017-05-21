@@ -21,6 +21,8 @@ class RSocketServer extends SocketServer
 
         $this->rooms['hottub'] = array();
 
+        $room = $this->rooms;
+
         $bot_client = new RSocketServerClient();
         $bot_client->name = 'gc';
         $bot_client->is_bot = true;
@@ -30,9 +32,9 @@ class RSocketServer extends SocketServer
         $bot_client = new RSocketServerClient();
         $bot_client->name = 'foo';
         $bot_client->is_bot = true;
-        $bot_client->events['user_join_room'] = function($arg_array) use ($CI){
+        $bot_client->events['user_join_room'] = function($arg_array) use ($room){
             $client = $arg_array[0];
-            foreach($CI->rooms["chat"] as $room_clients){
+            foreach($room->rooms["chat"] as $room_clients){
                 $room_clients->send_message("foo: welcome ".$client->name."!");
             }
         };
