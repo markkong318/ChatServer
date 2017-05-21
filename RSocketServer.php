@@ -90,7 +90,7 @@ class RSocketServer extends SocketServer
     }
 
     public function handle_input($server,$client, $input){
-        $inputs = explode('/\r\n$/', $input);
+        $inputs = explode('\r\n$', $input);
 
         for($i = 0;$i < count($inputs) - 1; $i++){
             $this->handle_input2($server,$client, $inputs[$i]);
