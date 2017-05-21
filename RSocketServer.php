@@ -8,6 +8,8 @@ class RSocketServer extends SocketServer
     private $bot_clients = array();
 	
     public function __construct($bind_ip,$port){
+        $CI = $this;
+
         $this->client_class = 'RSocketServerClient';
 
         parent::__construct($bind_ip,$port);
@@ -28,9 +30,9 @@ class RSocketServer extends SocketServer
         $bot_client = new RSocketServerClient();
         $bot_client->name = 'foo';
         $bot_client->is_bot = true;
-        $bot_client->events['user_join_room'] = function($arg_array){
+        $bot_client->events['user_join_room'] = function($arg_array) use ($CI){
             $client = $arg_array[0];
-            foreach($this->rooms["chat"] as $room_clients){
+            foreach($CI->rooms["chat"] as $room_clients){
                 $room_clients->send_message("foo: welcome ".$client->name."!");
             }
         };
@@ -153,7 +155,7 @@ class RSocketServer extends SocketServer
 		if($this->startsWith($input, '/rooms')){
 
             $client->send_message("Active rooms are:");
-            echo print_r($this->rooms, true);
+
             foreach($this->rooms as $room_name => $clients){
                 $client->send_message("* ". $room_name." (".count($clients).")");
             }
