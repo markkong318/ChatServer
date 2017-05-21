@@ -94,7 +94,10 @@ class RSocketServer extends SocketServer
     public function handle_input($server,$client, $input){
         $inputs = preg_split('/\n|\r\n?/', $input);
 
-        for($i = 0;$i < count($inputs) - 1; $i++){
+        for($i = 0;$i < count($inputs); $i++){
+            if($inputs[$i] == ''){
+                continue;
+            }
             $this->handle_input2($server,$client, $inputs[$i]);
         }
         //echo print_r($inputs, true);
