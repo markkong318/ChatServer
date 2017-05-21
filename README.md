@@ -10,10 +10,13 @@ RChatServer is a new-line based telnet chat server. It is written in PHP and run
 5. A simple event subscribe interface. 
  
 # Usage 
+```
 php ./server.php
-
+```
 the default port in server.php is 9001
 
 # How to login
 In command line environment
+```
 telnet 127.0.0.1 9001
+```
