@@ -201,7 +201,7 @@ class SocketServer
     */
     public function trigger_hooks($command,&$client,$input)
     {
-        if(isset($this->hooks[$command]))
+        /*if(isset($this->hooks[$command]))
         {
             foreach($this->hooks[$command] as $function)
             {
@@ -209,7 +209,7 @@ class SocketServer
                 $continue = call_user_func_array($function, array(&$this,&$client,$input));
                 if($continue === FALSE) { break; }
             }
-        }
+        }*/
     }
 
     /*!	@function	infinite_loop
