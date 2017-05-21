@@ -34,7 +34,7 @@ class RSocketServer extends SocketServer
             $client = $arg_array[0];
             $room_clients = $arg_array[1];
             foreach($room_clients as $room_client){
-                $room_clients->send_message("foo: welcome ".$client->name."!");
+                $room_client->send_message("foo: welcome ".$client->name."!");
             }
         };
         $this->bot_clients[] = $bot_client;
